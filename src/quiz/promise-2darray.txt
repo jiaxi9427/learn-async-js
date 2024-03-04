@@ -1,1 +1,11 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+The main problem with this code is that it doesn't properly wait for the Promise to be resolved or rejected, 
+but instead prints the Promise object itself. When the sum2DArray function is called, 
+it first prints out "Sum called..." To show the process of starting to calculate the sum. 
+Next, it checks whether the passed argument is an array, and if it is, 
+asynchronously computes the sum of the array by setTimeout, which results in "resolving..." 
+The print is delayed until the next event loop. If the argument is not an array, print "rejecting..." immediately. 
+And reject the Promise. In either case, "returning from sum" is printed immediately after checking the input, 
+as it is part of the code to be executed simultaneously. 
+The modified code solves the problem in the original code by using.then() and.catch() to handle promises correctly, 
+ensuring that calculations or error messages are printed only after promises are resolved or rejected.
